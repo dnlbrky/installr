@@ -953,7 +953,7 @@ install.latex2rtf <- function(...) install.LaTeX2RTF(...)
 #' @description Allows the user to downloads and install the latest version of Cygwin for Windows.
 #' @details
 #' Cygwin is a collection of tools which provide a Linux look and feel environment for Windows.
-#' @param bit Specify 32 bit or 64 for your particular version of Windows.
+#' @param bit Specify whether to install the 32 or 64 bit version.  The default is to match the version of Windows running on your machine.
 #' @param ... extra parameters to pass to \link{install.URL}
 #' @return TRUE/FALSE - was the installation successful or not.
 #' @export
@@ -965,22 +965,18 @@ install.latex2rtf <- function(...) install.LaTeX2RTF(...)
 #' \dontrun{
 #' install.Cygwin() # installs the latest version of Cygwin
 #' }
-install.Cygwin  <- function(bit = 32, ...) {    
-#    # get download URL:
-#    page     <- readLines(page_with_download_url, warn = FALSE)
-#    # http://swftools.org/swftools-0.9.0.exe
-#    pat <- "swftools-[0-9.]+.exe"
-#    target_line <- grep(pat, page, value = TRUE); 
-#    m <- regexpr(pat, target_line); 
-#    URL      <- regmatches(target_line, m) # (The http still needs to be prepended.   
-   # install.
-   if(bit == 32){
-      install.URL("http://cygwin.com/setup-x86.exe", ...)
-   }
-
-   if(bit == 32){
-      install.URL("http://cygwin.com/setup-x86_64.exe", ...)
-   }
+install.Cygwin <- function(bit = if(Sys.info()["machine"]=="x86-64") "64" else "32", ...) {
+  
+  os <- Sys.info()["sysname"]
+  if(os != "Windows") stop(paste0("Cygwin is for Windows, but your OS is ", os, "."))
+                           
+  bit <- as.character(bit)
+  
+  urlDL <- switch(bit,
+         "32" = "http://cygwin.com/setup-x86.exe",
+         "64" = "http://cygwin.com/setup-x86_64.exe")
+  
+  install.URL(urlDL, ...)
 
 }
 

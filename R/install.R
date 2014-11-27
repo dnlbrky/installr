@@ -990,7 +990,7 @@ install.cygwin <- function(...) install.Cygwin(...)
 #' @description Allows the user to download and install OpenSSH (version 6.7p1-1-v1) for Windows.
 #' @details
 #' SSH (\strong{s}ecure \strong{sh}ell) is a protocol for securely connecting to a remote device.  OpenSSH is a free version of SSH, developed by the OpenBSD Project.  This installer for Windows is provided by mls-software.com.
-#' OpenSSH can create an SSH connection from the command prompt.  Cygwin (\link{install.Cygwin) provides similar capabilities (among others), but a full installation of Cygwin is much larger than OpenSSH.
+#' OpenSSH can create an SSH connection from the command prompt.  Cygwin (\link{install.Cygwin}) provides similar capabilities (among others), but a full installation of Cygwin is much larger than OpenSSH.
 #' @param ... extra parameters to pass to \link{install.URL}
 #' @return TRUE/FALSE - was the installation successful or not.
 #' @export
@@ -999,7 +999,7 @@ install.cygwin <- function(...) install.Cygwin(...)
 #' \item SSH page on Wikipedia: \url{http://en.wikipedia.org/wiki/Secure_Shell}
 #' \item OpenSSH homepage: \url{http://www.openssh.com/}
 #' \item OpenSSH page on mls-software.com: \url{http://www.mls-software.com/opensshd.html}
-#' \item \link{install.Cygwin}
+#' \item install.Cygwin: \link{install.Cygwin}
 #' } 
 #' @examples
 #' \dontrun{

@@ -948,9 +948,9 @@ install.latex2rtf <- function(...) install.LaTeX2RTF(...)
 
 
 
-#' @title Downloads and installs Cygwin for windows
+#' @title Downloads and installs Cygwin for Windows
 #' @aliases install.cygwin
-#' @description Allows the user to downloads and install the latest version of Cygwin for Windows.
+#' @description Allows the user to download and install the latest version of Cygwin for Windows.
 #' @details
 #' Cygwin is a collection of tools which provide a Linux look and feel environment for Windows.
 #' @param bit Specify whether to install the 32 or 64 bit version.  The default is to match the version of Windows running on your machine.
@@ -984,6 +984,35 @@ install.Cygwin <- function(bit = if(Sys.info()["machine"]=="x86-64") "64" else "
 install.cygwin <- function(...) install.Cygwin(...)
 
 
+
+
+#' @title Downloads and installs OpenSSH for Windows
+#' @description Allows the user to download and install OpenSSH (version 6.7p1-1-v1) for Windows.
+#' @details
+#' SSH (\strong{s}ecure \strong{sh}ell) is a protocol for securely connecting to a remote device.  OpenSSH is a free version of SSH, developed by the OpenBSD Project.  This installer for Windows is provided by mls-software.com.
+#' OpenSSH can create an SSH connection from the command prompt.  Cygwin (\link{install.Cygwin) provides similar capabilities (among others), but a full installation of Cygwin is much larger than OpenSSH.
+#' @param ... extra parameters to pass to \link{install.URL}
+#' @return TRUE/FALSE - was the installation successful or not.
+#' @export
+#' @references
+#' \itemize{
+#' \item SSH page on Wikipedia: \url{http://en.wikipedia.org/wiki/Secure_Shell}
+#' \item OpenSSH homepage: \url{http://www.openssh.com/}
+#' \item OpenSSH page on mls-software.com: \url{http://www.mls-software.com/opensshd.html}
+#' \item \link{install.Cygwin}
+#' } 
+#' @examples
+#' \dontrun{
+#' install.OpenSSH() # installs version 6.7p1-1-v1 of OpenSSH
+#' }
+install.OpenSSH <- function(...) {
+  
+  os <- Sys.info()["sysname"]
+  if(os != "Windows") stop(paste0("This version of OpenSSH is for Windows, but your OS is ", os, "."))
+  
+  install.URL("http://www.mls-software.com/files/setupssh-6.7p1-1-v1.exe")
+
+}
 
 
 
